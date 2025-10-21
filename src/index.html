@@ -1,11 +1,70 @@
+<!--Homepage-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HIPOC | Home</title>
+    <meta name="description" content="Welcome to Hope It Pans Out Catering (HIPOC) 
+    - A place for chefs to showcase dishes, menus, and kitchen philosophy — with integrated booking or private dining requests.">
+    <meta author="Nathan Bird & Rebecca Hanks">
+    <link rel="stylesheet" href="styles/base.css">
+    <script module src="main.js" defer></script>
 </head>
+
 <body>
-    <p>can you see this</p>
+    <header>
+        <!--photo is too large, please resize not sure what size you would like.
+        I just shrunk it for now, so I could see the page-->
+        <figure>
+            <picture>
+                <img 
+                    id="logo" 
+                    src="images/logo_and_banner/logo.png" 
+                    alt="Hope It Pans Out Catering Logo"
+                    width="250" 
+                    height="250">
+            </picture>            
+        </figure>
+        
+        <h1>Hope It Pans Out Catering</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!--HERO BANNER-->
+        <section id="hero-banner">
+            <!--HERO BANNER HERE-->
+        </section>
+
+        <!--About Chef-->
+        <section id="about-chef">
+            <!--Adjust photo size in css and delete width and height attributes-->
+            <img
+                src="images/chef/meet_the_chef_nate.jpg" 
+                alt="Chef Nathan Bird"
+                width="300" 
+                height="400">
+            <h2>About the Chef</h2>
+            <p>Meet Nathan Bird, one of the chefs and co-owner of Hope It Pans Out Catering.
+                With years of experience in the industrial cooking, Nathan is dedicated to creating unforgettable dining experiences.</p>
+        </section>
+
+        <!--MENU-->
+        <section id="menu">
+            <h2>Our Menu</h2>
+            <p>Explore our diverse menu featuring a variety of dishes made with fresh, locally-sourced ingredients.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2025 Hope It Pans Out Catering</p>
+    </footer>
 </body>
 </html>
