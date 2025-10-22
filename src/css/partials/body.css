@@ -1,0 +1,18 @@
+/*slide show for menu gallery*/
+.menu-gallery-slideshow {
+    position: relative;
+    margin: auto;
+}
+
+.menu-gallery-slideshow .slide {
+    display: none; /* hide all slides */
+    text-align: center;
+}
+
+.menu-gallery-slideshow .slide.active {
+    display: block; /* show only the active slide */
+}
+
+.menu-gallery-slideshow img {
+    border-radius: 8px; 
+}

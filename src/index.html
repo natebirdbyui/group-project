@@ -1,4 +1,3 @@
-<!--Homepage-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +6,9 @@
     <title>HIPOC | Home</title>
     <meta name="description" content="Welcome to Hope It Pans Out Catering (HIPOC) 
     - A place for chefs to showcase dishes, menus, and kitchen philosophy — with integrated booking or private dining requests.">
-    <meta author="Nathan Bird & Rebecca Hanks">
-    <link rel="stylesheet" href="styles/base.css">
-    <script module src="main.js" defer></script>
+    <meta name="author" content="Nathan Bird & Rebecca Hanks">
+    <link rel="stylesheet" href="css/base.css">
+    <script type="module" src="js/main.js" defer></script>
 </head>
 
 <body>
@@ -51,20 +50,118 @@
                 width="300" 
                 height="400">
             <h2>About the Chef</h2>
-            <p>Meet Nathan Bird, one of the chefs and co-owner of Hope It Pans Out Catering.
+            <p>Meet Nathan Bird, one of the chefs and co-owner of Hope It Pans Out Catering. He has found his passion in creating delicious meals.
                 With years of experience in the industrial cooking, Nathan is dedicated to creating unforgettable dining experiences.</p>
         </section>
 
         <!--MENU-->
         <section id="menu">
-            <h2>Our Menu</h2>
+            <h2>Our Menu</h2><!--If you want to update the menu details, go for it-->
             <p>Explore our diverse menu featuring a variety of dishes made with fresh, locally-sourced ingredients.</p>
+            <!--BBQ SECTION-->
+            <div class="menu-section" id="bbq-section">
+                <h3>BBQ</h3>
+                <div class="menu-gallery-slideshow">
+                    <div class="slide active">
+                        <img 
+                            src="images/food/complete_bbq.jpg" 
+                            alt="Complete BBQ Meal" 
+                            height="300px"
+                            width="400"
+                            loading="lazy">                        
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/food/start_bbq.jpg"
+                            alt="Beginning the Smoking Process"
+                            height="300px"
+                            width="400"
+                            loading="lazy">                        
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/food/ribs_before_butterbath.jpg"
+                            alt="Ribs Before Butter Bath"
+                            height="400px"
+                            width="250"
+                            loading="lazy">                        
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/food/brisket.jpg" 
+                        alt="Smoked Brisket" 
+                        height="400px"
+                        width="250"
+                        loading="lazy">
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/food/bbq_hamburger_hotdog.jpg" 
+                        alt="Hamburger and Hotdog Meal" 
+                        height="250px"
+                        width="400px"
+                        loading="lazy">
+                    </div>
+
+                    <div class="slide">
+                        <img src="images/food/bacon_wrap_pork.jpg" 
+                        alt="Bacon Wrapped Pork Tenderloin" 
+                        height="250px"
+                        width="400px"
+                        loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <!--BAKING SECTION-->
+            <div class="menu-section" id="baking-section">
+                <h3>Baking</h3>
+                <div class="menu-gallery-slideshow">
+                    <div class="slide active">
+                        <img 
+                            src="images/food/icecream_cake.jpg"
+                            alt="Ice Cream Cake"
+                            height="400"
+                            width="250"
+                            loading="lazy">
+                    </div>
+
+                    <div class="slide">
+                        <img 
+                            src="images/food/sweet_potato_casserole.jpg"
+                            alt="Sweet Potato Casserole"
+                            height="400"
+                            width="250"
+                            loading="lazy">
+                </div>
+            </div>
+            <!--COOKING SECTION-->
+            <div class="menu-section" id="cooking-section">
+                <h3>Cooking</h3>
+                <div class="menu-gallery-slideshow">
+                    <div class="slide active">
+                        <img 
+                            src="images/food/tacos_alpastor.jpg"
+                            alt="Tacos Al Pastor"
+                            width="400"
+                            height="200"
+                            loading="lazy">                            
+                    </div>
+                    <div class="slide">
+                        <img 
+                            src="images/food/Chicken_enchiladas.jpg"
+                            alt="Chicken Alfredo Pasta"
+                            width="400"
+                            height="200"
+                            loading="lazy">
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>
-            &copy; 2025 Hope It Pans Out Catering</p>
+        <p>&copy; <span id="year"></span> Hope It Pans Out Catering. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
