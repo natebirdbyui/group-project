@@ -13,9 +13,11 @@
 </head>
 
 <body>
-    <header>
+    <header class="site-header">
+
         <!--photo is too large, please resize not sure what size you would like.
         I just shrunk it for now, so I could see the page-->
+        <div class="logo-group">
         <figure>
             <picture>
                 <img 
@@ -23,12 +25,13 @@
                     src="images/logo_and_banner/logo.png" 
                     alt="Hope It Pans Out Catering Logo"
                     width="250" 
-                    height="250">
+                    height="250"
+                    class="site-logo">
             </picture>            
         </figure>
-        
         <h1>Hope It Pans Out Catering</h1>
-        <nav>
+        </div>
+        <nav class="site-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="booking.html">Booking</a></li>
@@ -36,29 +39,38 @@
         </nav>
     </header>
 
+
     <main>
         <!--HERO BANNER-->
-        <section id="hero-banner">
-            <!--HERO BANNER HERE-->
-        </section>
+        <div class="banner-container">
+            <img src="images/food/steak-1359897_1920.jpg" alt="steak" class="banner-bg">
+            <div class="banner-content">
+            <h1>Cater With Nathan Bird</h1>
+            </div>
+        </div>
 
         <!--About Chef-->
-        <section id="about-chef">
-            <!--Adjust photo size in css and delete width and height attributes-->
+        <section class="about-chef">
+            <div class="about-container"> 
+                <div class="about-image">
             <img
                 src="images/chef/meet_the_chef_nate.jpg" 
                 alt="Chef Nathan Bird"
                 width="300" 
                 height="400">
+                </div>
+            <div class="about-text">
             <h2>About the Chef</h2>
             <p>Meet Nathan Bird, one of the chefs and co-owner of Hope It Pans Out Catering. He has found his passion in creating delicious meals.
                 With years of experience in the industrial cooking, Nathan is dedicated to creating unforgettable dining experiences.</p>
+            </div>
+            </div>
         </section>
 
         <!--MENU-->
-        <section id="menu">
-            <h2>Our Menu</h2><!--If you want to update the menu details, go for it-->
-            <p>Explore our diverse menu featuring a variety of dishes made with fresh, locally-sourced ingredients.</p>
+        <section class="menu-section">
+            <h2 class="menu-title">Our Menu</h2><!--If you want to update the menu details, go for it-->
+            <p class="menu-intro">Explore our diverse menu featuring a variety of dishes made with fresh, locally-sourced ingredients.</p>
             <!--BBQ SECTION-->
             <div class="menu-section" id="bbq-section">
                 <h3>BBQ</h3>
