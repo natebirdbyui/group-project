@@ -84,3 +84,74 @@ body, html {
   line-height: 1.2;
   letter-spacing: -0.5px;
 }
+
+/* MENU GALLERY */
+.menu-title, .menu-intro{
+    text-align: center;
+}
+
+.menu-section {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #283618;
+    color: white;
+}
+
+.menu-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+
+/*BBQ*/
+.gallery-bbq {
+    text-align: center;
+}
+.gallery-bbq img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 0;
+    border: 2px solid white;
+
+}
+.bbq-title {
+    margin-top: 1em;
+    font-size: 1.2 em;
+}
+
+/*BAKE*/
+.gallery-baking {
+    text-align: center;
+}
+.gallery-baking img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid white;
+
+}
+.bake-title {
+    margin-top: 1em;
+    font-size: 1.2 em;
+}
+
+
+/*COOK*/
+.gallery-cooking {
+    text-align: center;
+}
+.gallery-cooking img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid white;
+
+}
+.cook-title {
+    margin-top: 1em;
+    font-size: 1.2 em;
+}
+
