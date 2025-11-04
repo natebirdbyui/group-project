@@ -1,0 +1,86 @@
+{
+    "menu": [
+        {
+            "id": 1,
+            "category": "BBQ",
+            "name": "Grilled Chicken",
+            "servings": 8,
+            "price_per_serving": 2.50,
+            "description": "Juicy grilled chicken grilled to perfection with our special BBQ sauce, served with cilantro and lime.",
+            "image": "images/food/bbq-2823726_640.jpg"
+
+        },
+        {
+            "id": 2,
+            "category": "BBQ",
+            "name": "BBQ Ribs Complete Meal",
+            "servings": 20,
+            "price_per_serving": 4.00,
+            "description": "Tender BBQ ribs smoked to perfection glazed with our special BBQ sauce, served with baked potatoes, garlic bread, and pit style beans. A delicious meal!",
+            "image": "images/food/rsz_complete_bbq.jpg"
+        },
+        {
+            "id": 3,
+            "category": "BBQ",
+            "name":"Bacon Wrapped Pork Tenderloin",
+            "servings": 10,
+            "price_per_serving": 5.00,
+            "description": "Juicy pork tenderloin wrapped smoked in crispy bacon and glazed with our special BBQ sauce.",
+            "image": "images/food/rsz_bacon_wrap_pork.jpg"
+        },
+        {
+            "id": 4,
+            "category":"BBQ",
+            "name": "Hamburger & Hotdog Meal",
+            "servings": 12,
+            "price_per_serving": 2.50,
+            "description": "A delicious meal of our signature smoked hamburgers and hotdogs served with fries, and mushrooms.",
+            "image": "images/food/rsz_bbq_hamburger_hotdog.jpg"
+        },
+        {
+            "id": 5,
+            "category":"Baking",
+            "name": "Wedding Cake",
+            "servings": 75,
+            "price_per_serving": 5.00,
+            "description": "A delicious wedding cake with layers of vanilla and chocolate cake, filled with our special buttercream frosting.",
+            "image": "images/food/wedding-cake-639516_640.jpg"
+        },
+        {
+            "id": 6,
+            "category":"Baking",
+            "name": "Boston Market Sweet Potato Casserole",
+            "servings": 20,
+            "price_per_serving": 2.00,
+            "description": "A delicious sweet potato casserole with a buttery, cinnamon-sugar topping, perfect for any holiday meal.",
+            "image": "images/food/rsz_1sweet_potato_casserole.jpg"
+        },
+        {
+            "id": 7,
+            "category": "Cooking",
+            "name": "Tacos del camarón",
+            "servings": 12,
+            "price_per_serving": 3.50,
+            "description": "Delicious shrimp tacos with salsa roja, grilled onions, mexican crema, fire roasted peppers and corn, along with cilantro and lime.",
+            "image": "images/food/tacos-4495602_640.jpg"
+        },
+        {
+            "id": 8,
+            "category": "Cooking",
+            "name": "Chicken Enchiladas",
+            "servings": 15,
+            "price_per_serving": 3.00,
+            "description": "Tender chicken enchiladas filled with seasoned chicken, cheese, and green chilies, served with rice and beans.",
+            "image": "images/food/rsz_chicken_enchiladas.jpg"
+        },
+        {
+            "id": 9,
+            "category": "Cooking",
+            "name": "Tacos al Pastor",
+            "servings": 12,
+            "price_per_serving": 3.50,
+            "description": "Perfected pork tacos marinated in a blend of spices and pineapple, white onion, cilantro, and lime. Our co-owner's favorite taco when he served his mission in Mexico! He knows the flavor, and he perfected it like a real taquero!",
+            "image": "images/food/rsz_tacos_alpastor.jpg"
+        }
+    ]
+}
