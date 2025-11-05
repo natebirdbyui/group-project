@@ -5,7 +5,7 @@
             "category": "BBQ",
             "name": "Grilled Chicken",
             "servings": 8,
-            "price_per_serving": 2.50,
+            "price_per_serving": 3.50,
             "description": "Juicy grilled chicken grilled to perfection with our special BBQ sauce, served with cilantro and lime.",
             "image": "images/food/bbq-2823726_640.jpg"
 
@@ -24,7 +24,7 @@
             "category": "BBQ",
             "name":"Bacon Wrapped Pork Tenderloin",
             "servings": 10,
-            "price_per_serving": 5.00,
+            "price_per_serving": 3.75,
             "description": "Juicy pork tenderloin wrapped smoked in crispy bacon and glazed with our special BBQ sauce.",
             "image": "images/food/rsz_bacon_wrap_pork.jpg"
         },
@@ -51,7 +51,7 @@
             "category":"Baking",
             "name": "Boston Market Sweet Potato Casserole",
             "servings": 20,
-            "price_per_serving": 2.00,
+            "price_per_serving": 3.00,
             "description": "A delicious sweet potato casserole with a buttery, cinnamon-sugar topping, perfect for any holiday meal.",
             "image": "images/food/rsz_1sweet_potato_casserole.jpg"
         },
