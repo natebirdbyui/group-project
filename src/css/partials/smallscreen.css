@@ -1,0 +1,275 @@
+/* INDEX HTML SMALL SCREEN */
+
+/* MOBILE & SMALL SCREEN */
+
+@media (max-width: 768px) {
+    /* Header layout */
+    .site-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1em;
+    }
+
+    .logo-group {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .site-logo {
+        max-width: 120px;
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+        gap: 0.5em;
+        padding: 0;
+    }
+
+    .site-nav a {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    /* Banner section */
+    .banner-container {
+        height: 250px;
+    }
+
+    .banner-content {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    /* About section */
+    .about-chef {
+        padding: 2em 1em;
+    }
+
+    .about-container {
+        flex-direction: column;
+        padding: 1.5em;
+        gap: 2em;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    /* Menu section */
+    .menu-section {
+        padding: 1.5em 1em;
+    }
+
+    .menu-gallery {
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    .menu-gallery img {
+        width: 100%;
+        height: auto;
+    }
+
+    .menu-title {
+        font-size: 1.8em;
+    }
+
+    .menu-intro {
+        font-size: 1em;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 1em;
+        font-size: 0.9em;
+    }
+}
+
+
+/* EXTRA SMALL SCREENS (Phones <480px) */
+
+
+@media (max-width: 480px) {
+    .banner-container {
+        height: 200px;
+    }
+
+    .banner-content h1 {
+        font-size: 1.2em;
+    }
+
+    .about-chef {
+        padding: 1em;
+    }
+
+    .menu-title {
+        font-size: 1.5em;
+    }
+
+    .menu-gallery img {
+        border-radius: 4px;
+    }
+
+    .site-nav a {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
+/* BOOKING SMALL SCREEN CODE */
+
+/* TABLET & SMALL SCREEN */
+
+@media (max-width: 768px) {
+  /* HEADER */
+  .site-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1em;
+  }
+
+  .logo-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .site-logo {
+    max-width: 120px;
+    height: auto;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0;
+  }
+
+  .site-nav a {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  /* BANNER */
+  .banner-container {
+    height: 250px;
+  }
+
+  .banner-content {
+    font-size: 22px;
+    padding: 10px;
+  }
+
+  /* BOOKING SECTION */
+  #booking-section {
+    padding: 2em 1em;
+  }
+
+  #booking-section h2 {
+    font-size: 1.8em;
+  }
+
+  #booking-section p {
+    font-size: 1em;
+  }
+
+  #booking-form {
+    width: 100%;
+    max-width: 90%;
+    padding: 1.5em;
+  }
+
+  #booking-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 1em;
+  }
+
+  #booking-form input,
+  #booking-form select,
+  #booking-form textarea {
+    width: 100%;
+    padding: 0.75em;
+    margin-top: 0.3em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+  }
+
+  #booking-form button {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    background-color: #52381D;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 6px;
+    margin-top: 1.5em;
+    cursor: pointer;
+  }
+
+  #booking-form button:hover {
+    background-color: #3d2a15;
+  }
+
+  .menu-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    font-size: 0.9em;
+    padding: 1.5em 1em;
+  }
+}
+
+/* EXTRA SMALL SCREENS (Phones <480px) */
+
+@media (max-width: 480px) {
+  .banner-container {
+    height: 200px;
+  }
+
+  .banner-content h1 {
+    font-size: 1.2em;
+  }
+
+  #booking-section {
+    padding: 1.5em 1em;
+  }
+
+  #booking-form {
+    padding: 1em;
+  }
+
+  #booking-form label {
+    font-size: 0.9em;
+  }
+
+  #booking-form input,
+  #booking-form select,
+  #booking-form textarea {
+    font-size: 0.9em;
+    padding: 0.6em;
+  }
+
+  #booking-form button {
+    font-size: 1em;
+    padding: 0.8em;
+  }
+}
