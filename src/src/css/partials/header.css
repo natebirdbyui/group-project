@@ -1,0 +1,39 @@
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 0.05em; */
+    background-color: #52381D;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 1em; 
+  font-size: 18px;
+}
+
+.site-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 1em;
+    gap: 1em;
+}
+
+.site-nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    margin-left: 1em;
+    color: white;
+
+
+}
+.site-logo {
+    max-width: 150px;
+    height: auto;
+}
+
