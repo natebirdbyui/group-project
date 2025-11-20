@@ -32,8 +32,7 @@ export function stopAllSlideshows() {
 }
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
+export function initSlideshows() {
     slideshows = document.querySelectorAll(".menu-gallery-slideshow");
     
     // Initialize all
@@ -51,4 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
         startAllSlideshows();
         });
     });
-});
+}
