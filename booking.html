@@ -79,28 +79,33 @@
                     <option value="private_dining">Private Dining</option>
                 </select>
                 <br>
+                <label for="menu-item">Select a Dish:</label>
+                <select id="menu-item" class="menu-item-select" required>
+                    <option value="" disabled selected>Select a dish</option>
+                </select>
+                <br>
 
-                <!-- Container for multiple dishes -->
-                <div id="dishes-container"></div>
-                <button type="button" id="add-dish-btn">Add Dish</button>
-                <button type="button" id="restart-booking-btn">Restart Booking</button>
-                <p><strong>Grand Total:</strong> $<span id="grand-total">0.00</span></p>
-
-                <label for="message">Additional Details:</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-
-                <button type="submit">Submit Booking Request</button>
-
-                <!--Display Menu with meal photo-->
+                <!-- Display first dish photo/details -->
                 <div id="menu-details" class="menu-details" style="display:none;">
                     <img id="menu-image" alt="Dish Image"/>
                     <h3 id="menu-name"></h3>
                     <p id="menu-description"></p>
                     <p><strong>Servings: </strong> <span id="menu-servings"></span></p>
-                    <!--<p><strong>Price per Serving: </strong> $<span id="menu-price"></span></p>-->
                 </div>
+
                 <p id="trays-needed"></p>
 
+                <!-- Multiple Dishes -->
+                <div id="dishes-container"></div>
+                <button type="button" id="add-dish-btn">Add Dish</button>
+                <button type="button" id="restart-booking-btn">Restart Booking</button>
+                <p><strong>Grand Total:</strong> $<span id="grand-total">0.00</span></p>
+
+                <!-- Additional Details -->
+                <label for="message">Additional Details:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <!-- Submit -->
                 <button type="submit">Submit Booking Request</button>
             </form>
         </section>

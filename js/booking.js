@@ -1,10 +1,17 @@
-// Fields and containers and added buttons
+// DOM Elements
 const bookingForm = document.querySelector("#booking-form");
+const menuSelect = document.querySelector("#menu-item");
+const dishesContainer = document.querySelector("#dishes-container");
+const addDishButton = document.querySelector("#add-dish-btn");
+const restartButton = document.querySelector("#restart-booking-btn");
 const guestsInput = document.querySelector("#guests");
-const dishesContainer = document.querySelector("#dishes-container") || bookingForm;
-const addDishButton = document.querySelector("#add-dish-btn"); // optional add dish button
-const restartButton = document.querySelector("#restart-booking-btn"); // optional restart button
 const grandTotalEl = document.getElementById("grand-total");
+const menuDetails = document.querySelector("#menu-details");
+const menuImage = document.querySelector("#menu-image");
+const menuName = document.querySelector("#menu-name");
+const menuDescription = document.querySelector("#menu-description");
+const menuServings = document.querySelector("#menu-servings");
+const traysInfo = document.querySelector("#trays-needed");
 
 // URL Parameter for preselecting dish
 const params = new URLSearchParams(window.location.search);
@@ -12,23 +19,31 @@ const preselectedId = parseInt(params.get("id"));
 
 let menuData = [];
 let dishCount = 0;
+let savedData = {};
 
-// Load menu data from menu.json
+// Load menu.json
 async function loadMenu() {
   try {
     const response = await fetch("js/menu.json");
     const data = await response.json();
     menuData = data.menu;
 
-    // Menu options are now fully loaded
-    // Restore previously saved dishes
+    // Populate first dish select
+    menuData.forEach(item => {
+      const option = document.createElement("option");
+      option.value = item.id;
+      option.textContent = `${item.name} (${item.category})`;
+      menuSelect.appendChild(option);
+    });
+
+    // Restore saved data
+    savedData = JSON.parse(localStorage.getItem("bookingData")) || {};
     restoreSavedData();
 
-    // If URL param exists and no saved dishes, preselect it
-    if (preselectedId && (!savedData || !savedData.dishes)) {
-      addDish(preselectedId);
-    } else if (!savedData || !savedData.dishes) {
-      addDish();
+    // Preselect URL param dish if no saved dishes
+    if (preselectedId && (!savedData.dishes || savedData.dishes.length === 0)) {
+      menuSelect.value = preselectedId;
+      updateFirstDish();
     }
 
   } catch (error) {
@@ -36,8 +51,24 @@ async function loadMenu() {
   }
 }
 
+// Update first dish photo/details
+function updateFirstDish() {
+  const selectedItem = menuData.find(item => item.id === parseInt(menuSelect.value));
+  if (!selectedItem) {
+    menuDetails.style.display = "none";
+    return;
+  }
+  menuDetails.style.display = "block";
+  menuImage.src = selectedItem.image;
+  menuImage.alt = selectedItem.name;
+  menuName.textContent = selectedItem.name;
+  menuDescription.textContent = selectedItem.description;
+  menuServings.textContent = selectedItem.servings;
 
-// Add a new dish row
+  updateAllTotals();
+}
+
+// Add a dynamic dish row
 function addDish(preselectId = null) {
   dishCount++;
   const row = document.createElement("div");
@@ -57,6 +88,7 @@ function addDish(preselectId = null) {
       <p><strong>Servings:</strong> <span class="menu-servings"></span></p>
       <p><strong>Price per Serving:</strong> $<span class="menu-price"></span></p>
     </div>
+    <p><strong>Price per Serving:</strong> $<span class="price-per-serving">0.00</span></p>
     <p><strong>Total for this Dish:</strong> $<span class="estimated-total">0.00</span></p>
   `;
 
@@ -67,44 +99,39 @@ function addDish(preselectId = null) {
     const option = document.createElement("option");
     option.value = item.id;
     option.textContent = `${item.name} (${item.category})`;
-    option.dataset.price = item.price_per_serving;
     select.appendChild(option);
   });
 
   if (preselectId) select.value = preselectId;
 
-  // Dish selection listener
-  select.addEventListener("change", () => {
-    updateDishRow(row);
-    saveFormData();
-  });
-
-  // Remove dish listener
+  select.addEventListener("change", () => updateDishRow(row));
   row.querySelector(".remove-dish-btn").addEventListener("click", () => {
     row.remove();
-    updateGrandTotal();
+    updateAllTotals();
     saveFormData();
   });
 
   updateDishRow(row);
 }
 
-//Update a single dish row
+// Update a single dynamic dish row
 function updateDishRow(row) {
   const select = row.querySelector(".menu-item-select");
   const selectedItem = menuData.find(item => item.id === parseInt(select.value));
-  const menuDetails = row.querySelector(".menu-details");
+  const priceEl = row.querySelector(".price-per-serving");
   const totalEl = row.querySelector(".estimated-total");
+  const menuDetails = row.querySelector(".menu-details");
   const guests = parseInt(guestsInput.value || 0);
 
   if (!selectedItem) {
-    menuDetails.style.display = "none";
+    if (menuDetails) menuDetails.style.display = "none";
+    priceEl.textContent = "0.00";
     totalEl.textContent = "0.00";
-    updateGrandTotal();
+    updateAllTotals();
     return;
   }
 
-  //Fill dish details
+  // Show details
   menuDetails.style.display = "block";
   row.querySelector(".menu-image").src = selectedItem.image;
   row.querySelector(".menu-image").alt = selectedItem.name;
@@ -113,45 +140,50 @@ function updateDishRow(row) {
   row.querySelector(".menu-servings").textContent = selectedItem.servings;
   row.querySelector(".menu-price").textContent = selectedItem.price_per_serving.toFixed(2);
 
-  //Total for this dish
+  priceEl.textContent = selectedItem.price_per_serving.toFixed(2);
+
   const traysNeeded = guests > 0 ? Math.ceil(guests / selectedItem.servings) : 0;
   totalEl.textContent = (traysNeeded * selectedItem.servings * selectedItem.price_per_serving).toFixed(2);
 
-  updateGrandTotal();
+  updateAllTotals();
 }
 
-//Update all dish rows
-function updateAllDishes() {
-  const rows = document.querySelectorAll(".dish-row");
-  rows.forEach(row => updateDishRow(row));
-}
-
-//Update grand total
-function updateGrandTotal() {
-  const rows = document.querySelectorAll(".dish-row");
+// Update totals for first + dynamic dishes
+function updateAllTotals() {
   const guests = parseInt(guestsInput.value || 0);
   let total = 0;
 
-  rows.forEach(row => {
-    const select = row.querySelector(".menu-item-select");
-    const selectedItem = menuData.find(item => item.id === parseInt(select.value));
-    if (!selectedItem || guests <= 0) return;
+  // First dish
+  const firstItem = menuData.find(item => item.id === parseInt(menuSelect.value));
+  if (firstItem) {
+    const trays = guests > 0 ? Math.ceil(guests / firstItem.servings) : 0;
+    total += trays * firstItem.servings * firstItem.price_per_serving;
+    traysInfo.textContent = trays > 0 ? `${trays} tray(s) needed` : "";
+  }
 
-    const traysNeeded = Math.ceil(guests / selectedItem.servings);
-    total += traysNeeded * selectedItem.servings * selectedItem.price_per_serving;
+  // Dynamic dishes
+  document.querySelectorAll(".dish-row").forEach(row => {
+    const select = row.querySelector(".menu-item-select");
+    const item = menuData.find(i => i.id === parseInt(select.value));
+    if (item) {
+      const trays = guests > 0 ? Math.ceil(guests / item.servings) : 0;
+      total += trays * item.servings * item.price_per_serving;
+      row.querySelector(".estimated-total").textContent = (trays * item.servings * item.price_per_serving).toFixed(2);
+    }
   });
 
-  if (grandTotalEl) grandTotalEl.textContent = total.toFixed(2);
+  grandTotalEl.textContent = total.toFixed(2);
 }
 
-//Save form data to localStorage
+// Save form data to localStorage
 function saveFormData() {
   const formData = {};
-  new FormData(bookingForm).forEach((value, key) => {
-    formData[key] = value;
-  });
+  new FormData(bookingForm).forEach((value, key) => (formData[key] = value));
 
-  //Save selected dishes
+  // Save first dish
+  formData.firstDish = parseInt(menuSelect.value) || null;
+
+  // Save dynamic dishes
   formData.dishes = [];
   document.querySelectorAll(".dish-row").forEach(row => {
     const select = row.querySelector(".menu-item-select");
@@ -161,63 +193,66 @@ function saveFormData() {
   localStorage.setItem("bookingData", JSON.stringify(formData));
 }
 
-//Restore saved data
+// Restore saved form data
 function restoreSavedData() {
-  const savedData = JSON.parse(localStorage.getItem("bookingData")) || {};
+  savedData = JSON.parse(localStorage.getItem("bookingData")) || {};
+
   for (const [key, value] of Object.entries(savedData)) {
     const field = bookingForm.querySelector(`[name="${key}"]`);
     if (field) field.value = value;
   }
 
-  //Restore dishes
-  if (savedData.dishes && savedData.dishes.length > 0) {
-    document.querySelectorAll(".dish-row").forEach(row => row.remove()); // clear
-    savedData.dishes.forEach(id => addDish(id));
+  if (savedData.firstDish) {
+    menuSelect.value = savedData.firstDish;
+    updateFirstDish();
   }
 
-  updateAllDishes();
+  if (savedData.dishes && savedData.dishes.length > 0) {
+    savedData.dishes.forEach(id => addDish(id));
+  }
 }
 
-//Guest input listener
-guestsInput.addEventListener("input", () => {
-  updateAllDishes();
+// Listeners
+menuSelect.addEventListener("change", () => {
+  updateFirstDish();
   saveFormData();
 });
 
-// Form input listener
+guestsInput.addEventListener("input", () => {
+  updateAllTotals();
+  saveFormData();
+});
+
+addDishButton.addEventListener("click", () => addDish());
+
 bookingForm.addEventListener("input", saveFormData);
 
-// Form submission
-bookingForm.addEventListener("submit", e => {
-  e.preventDefault();
-  alert("Booking submitted! Thank you. It will be our pleasure to serve you.");
-  localStorage.removeItem("bookingData");
+restartButton.addEventListener("click", () => {
+  const confirmRestart = window.confirm(
+    "Are you sure you want to restart the booking? All current selections will be lost!"
+  );
+  if (!confirmRestart) return;
+
   bookingForm.reset();
   document.querySelectorAll(".dish-row").forEach(row => row.remove());
   addDish();
-  if (grandTotalEl) grandTotalEl.textContent = "0.00";
+  menuDetails.style.display = "none";
+  grandTotalEl.textContent = "0.00";
+  traysInfo.textContent = "";
+  localStorage.removeItem("bookingData");
 });
 
-// Add dish button
-if (addDishButton) {
-  addDishButton.addEventListener("click", () => addDish());
-}
-
-// Restart booking button
-if (restartButton) {
-  restartButton.addEventListener("click", () => {
-    const confirmRestart = window.confirm(
-      "Are you sure you want to restart the booking? All current selections will be lost!"
-    );
-    if (!confirmRestart) return; // if user cancels, do nothing
-
-    bookingForm.reset();
-    document.querySelectorAll(".dish-row").forEach(row => row.remove());
-    addDish();
-    if (grandTotalEl) grandTotalEl.textContent = "0.00";
-    localStorage.removeItem("bookingData");
-  });
-}
+bookingForm.addEventListener("submit", e => {
+  e.preventDefault();
+  alert("Booking submitted! Thank you. It will be our pleasure to serve you.");
+  bookingForm.reset();
+  document.querySelectorAll(".dish-row").forEach(row => row.remove());
+  addDish();
+  menuDetails.style.display = "none";
+  grandTotalEl.textContent = "0.00";
+  traysInfo.textContent = "";
+  localStorage.removeItem("bookingData");
+});
 
 // Initialize
 document.addEventListener("DOMContentLoaded", async () => {
