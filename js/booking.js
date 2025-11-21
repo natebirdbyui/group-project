@@ -20,16 +20,22 @@ async function loadMenu() {
     const data = await response.json();
     menuData = data.menu;
 
-    // If URL param exists, add it as a dish
-    if (preselectedId) {
+    // Menu options are now fully loaded
+    // Restore previously saved dishes
+    restoreSavedData();
+
+    // If URL param exists and no saved dishes, preselect it
+    if (preselectedId && (!savedData || !savedData.dishes)) {
       addDish(preselectedId);
-    } else {
+    } else if (!savedData || !savedData.dishes) {
       addDish();
     }
+
   } catch (error) {
     console.error("Error loading menu data:", error);
   }
 }
+
 
 // Add a new dish row
 function addDish(preselectId = null) {
