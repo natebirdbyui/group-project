@@ -21,8 +21,7 @@
                     id="logo" 
                     src="images/logo_and_banner/rsz_1logo.webp" 
                     alt="Hope It Pans Out Catering Logo"
-                    class="site-logo"
-                    loading="lazy">
+                    class="site-logo">
             </picture>            
         </figure>
         <h1>Hope It Pans Out Catering</h1>
@@ -36,7 +35,7 @@
     </header>
     <main>
         <div class="banner-container"><!--Changed to webp format for higher performance and smaller file size.-->
-            <img src="images/logo_and_banner/steak-1359897_1920.webp" alt="steak" class="banner-bg" loading="lazy">
+            <img src="images/logo_and_banner/steak-1359897_1920.webp" alt="steak" class="banner-bg">
             <div class="banner-content">
             <h1>Cater With Nathan Bird</h1>
             </div>
@@ -72,6 +71,7 @@
                 <label for="guests">Number of Guests:</label>
                 <input type="number" id="guests" name="guests" required>
                 <br>
+
                 <label for="typeSession">Type of Session:</label>
                 <select id="typeSession" name="typeSession" required>
                     <option value="" disabled selected>Select an option</option>
@@ -80,10 +80,16 @@
                 </select>
                 <br>
 
-                <label for="menu-item">Select a Dish:</label>
-                <select id="menu-item" name="menu-item" required>
-                    <option value="" disabled selected>Select a dish</option>
-                </select>
+                <!-- Container for multiple dishes -->
+                <div id="dishes-container"></div>
+                <button type="button" id="add-dish-btn">Add Dish</button>
+                <button type="button" id="restart-booking-btn">Restart Booking</button>
+                <p><strong>Grand Total:</strong> $<span id="grand-total">0.00</span></p>
+
+                <label for="message">Additional Details:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <button type="submit">Submit Booking Request</button>
 
                 <!--Display Menu with meal photo-->
                 <div id="menu-details" class="menu-details" style="display:none;">
@@ -91,20 +97,9 @@
                     <h3 id="menu-name"></h3>
                     <p id="menu-description"></p>
                     <p><strong>Servings: </strong> <span id="menu-servings"></span></p>
-                    <p><strong>Price per Serving: </strong> $<span id="menu-price"></span></p>                        
+                    <!--<p><strong>Price per Serving: </strong> $<span id="menu-price"></span></p>-->
                 </div>
-                    
-                <p><strong>Selected Dish Price:</strong> <span id="price-per-serving">$0.00</span></p>
-                <p><strong>Estimated Total:</strong> <span id="estimated-total">$0.00</span></p>
-                <p id="trays-needed" style="font-weight:bold; color:var(--accent-color);"></p>
-
-                <!--<div id="price-summary">
-                    <p>Price per serving: <span id="price-per-serving">$0.00</span></p>
-                    <p>Estimated total: <span id="estimated-total">$0.00</span></p>
-                </div>-->
-
-                <label for="message">Additional Details:</label>
-                <textarea id="message" name="message" rows="4"></textarea>
+                <p id="trays-needed"></p>
 
                 <button type="submit">Submit Booking Request</button>
             </form>
