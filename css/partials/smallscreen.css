@@ -67,6 +67,57 @@
     padding: 10px;
   }
 
+/* About Chef Section */
+.about-chef {
+    padding: 2em 1em;
+}
+
+.about-container {
+    flex-direction: column;
+    gap: 2em;
+    padding: 1.5em;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+}
+
+.about-text {
+    text-align: center;
+}
+
+/* Menu Section */
+.menu-section {
+    padding: 1.5em 1em;
+}
+
+.menu-gallery {
+    flex-direction: column;
+    gap: 2em;
+}
+
+.menu-gallery img {
+    width: 100%;
+    height: auto;
+}
+
+.menu-title {
+    font-size: 1.8em;
+}
+
+.menu-intro {
+    font-size: 1em;
+}
+
+
+
+
+
+
+
+
+
   /* BOOKING SECTION */
   #booking-section {
     padding: 2em 1em;
@@ -132,3 +183,53 @@
     padding: 1.5em 1em;
   }
 }
+
+
+/* EXTRA SMALL SCREENS (Phones <480px) 
+@media (max-width: 480px) { 
+  .banner-container { 
+    height: 200px; 
+  } 
+  .banner-content h1 { 
+    font-size: 1.2em; 
+  } 
+  .about-chef { 
+    padding: 1em; 
+  } 
+  .menu-title { 
+    font-size: 1.5em; 
+  } 
+  .menu-gallery img { 
+    border-radius: 4px; 
+  } 
+  .site-nav a { 
+    font-size: 16px; }
+  }
+
+
+/* EXTRA SMALL SCREENS (Phones <480px) */ 
+/* @media (max-width: 480px) { 
+  .banner-container { 
+    height: 200px; 
+  } 
+  .banner-content h1 { 
+    font-size: 1.2em; 
+  } 
+  #booking-section { 
+    padding: 1.5em 1em; 
+  } 
+  #booking-form { 
+    padding: 1em; 
+  } 
+  #booking-form label { 
+    font-size: 0.9em; 
+  } 
+  #booking-form input, 
+  #booking-form select, 
+  #booking-form textarea { 
+    font-size: 0.9em; padding: 0.6em; 
+  } 
+  #booking-form button { 
+    font-size: 1em; 
+    padding: 0.8em; } 
+  }  */
