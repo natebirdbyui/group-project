@@ -259,3 +259,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadMenu();
   restoreSavedData();
 });
+
+const navToggle = document.querySelector(".nav-toggle");
+const navMenu = document.querySelector(".site-nav");
+
+navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+});

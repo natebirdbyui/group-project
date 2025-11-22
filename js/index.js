@@ -43,5 +43,12 @@ async function loadMenu() {
   }
 }
 
+const navToggle = document.querySelector(".nav-toggle");
+const navMenu = document.querySelector(".site-nav");
+
+navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+});
+
 // Wait for DOM to be ready
 document.addEventListener("DOMContentLoaded", loadMenu);
