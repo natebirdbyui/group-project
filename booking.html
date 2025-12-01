@@ -80,14 +80,10 @@
                 <select id="typeSession" name="typeSession" required>
                     <option value="" disabled selected>Select an option</option>
                     <option value="catering">Catering</option>
-                    <option value="private_dining">Private Dining</option>
+                    <option value="private">Private Dining</option>
                 </select>
                 <br>
-                <label for="menu-item">Select a Dish:</label>
-                <select id="menu-item" class="menu-item-select" required>
-                    <option value="" disabled selected>Select a dish</option>
-                </select>
-                <br>
+                <label>Select a Dish:</label>                
 
                 <!-- Display first dish photo/details -->
                 <div id="menu-details" class="menu-details" style="display:none;">
@@ -111,10 +107,20 @@
 
                 <!-- Submit -->
                 <button type="submit">Submit Booking Request</button>
+                
             </form>
-        </section>
-
+        </section>  
+        <!-- Booking Modal -->
+        <div id="booking-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-message"></p>
+                <button id="modal-ok">OK</button>
+            </div>
+        </div>      
     </main>
+    
     <footer>
         <p>&copy; <span id="year"></span> Hope It Pans Out Catering. All rights reserved.</p>
     </footer>

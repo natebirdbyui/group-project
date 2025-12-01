@@ -27,10 +27,15 @@ async function loadMenu() {
         slide.classList.add("active");
       }
 
-      slide.innerHTML = `
+      
+    // Using URL Parameters to link to booking page Without forcing a service
+    slide.innerHTML = `
+      <a href="booking.html?dish=${item.id}" class="menu-link">
         <img src="${item.image}" alt="${item.name}">
         <h3>${item.name}</h3>
-      `;
+      </a>
+    `;
+
 
       categories[item.category].appendChild(slide);
     });
