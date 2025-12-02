@@ -1,4 +1,4 @@
-// Modal Elements
+// Setup modal elements
 export function setupModalElements(modalEl, messageEl, okBtn, closeBtn) {
   return { modalEl, messageEl, okBtn, closeBtn };
 }
@@ -41,7 +41,7 @@ export function setupBookingForm(
   grandTotalEl,
   service,
   modalElements,
-  savedData
+  dishesContainer
 ) {
   bookingForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -61,23 +61,22 @@ export function setupBookingForm(
     }
 
     // Date & time validation
-    if (!eventDate || isPastDate(eventDate)) {
-      showModal(modalElements, "Please select a valid event date that is today or in the future.");
+    if (!eventDate) {
+      showModal(modalElements, "Please select a valid event date.");
       return;
     }
-    if (!eventTime || isPastTime(eventDate, eventTime)) {
-      showModal(modalElements, "Please select a valid event time (cannot be in the past).");
+    if (!eventTime) {
+      showModal(modalElements, "Please select a valid event time.");
       return;
     }
 
     // All validations passed
     showModal(modalElements, "Booking submitted! Thank you! It will be our pleasure to serve you!", () => {
       bookingForm.reset();
-      document.querySelectorAll(".dish-row").forEach((row) => row.remove());
-      addDish(null);
+      document.querySelectorAll(".dish-row").forEach(row => row.remove());
+      addDish(dishesContainer, null, guestsInput, grandTotalEl);
       grandTotalEl.textContent = "0.00";
       localStorage.removeItem("bookingData");
-      if (savedData) Object.keys(savedData).forEach((k) => delete savedData[k]);
     });
   });
 }

@@ -32,7 +32,7 @@ export function addDish(dishesContainer, preselectId = null, guestsInput, grandT
 
   row.innerHTML = `
     <select class="menu-item-select" required>
-      <option value="" disabled selected>Select a dish</option>
+      <option value="" disabled>Select a dish</option>
     </select>
     <button type="button" class="remove-dish-btn">Remove</button>
     <div class="menu-details" style="display:none;">
@@ -57,7 +57,15 @@ export function addDish(dishesContainer, preselectId = null, guestsInput, grandT
     select.appendChild(option);
   });
 
-  if (preselectId) select.value = preselectId;
+  if (preselectId) {
+  // Wait until options are populated
+  setTimeout(() => {
+    select.value = preselectId;
+    // Trigger change to update dish details
+    select.dispatchEvent(new Event("change"));
+  }, 0);
+}
+
 
   select.addEventListener("change", () => updateDishRow(row, guestsInput, grandTotalEl));
 
@@ -66,7 +74,7 @@ export function addDish(dishesContainer, preselectId = null, guestsInput, grandT
     updateAllTotals(dishesContainer, guestsInput, grandTotalEl);
   });
 
-  updateDishRow(row, guestsInput, grandTotalEl);
+  if (!preselectId) updateDishRow(row, guestsInput, grandTotalEl);
 }
 
 // Update a single dish row
