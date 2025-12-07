@@ -113,6 +113,7 @@ body, html {
 /*BBQ*/
 .gallery-bbq {
     text-align: center;
+
 }
 .gallery-bbq img {
     width: 100%;
@@ -125,6 +126,11 @@ body, html {
 .bbq-title {
     margin-top: 1em;
     font-size: 1.2 em;
+
+    /* text-decoration: none;
+    color: inherit;
+    color: white; */
+
 }
 
 /*BAKE*/

@@ -70,3 +70,20 @@ body, html {
 .nav-toggle {
     display: none; /* hide on desktop */
 }
+
+#add-dish-btn, #restart-booking-btn, #submit-btn, .remove-dish-btn {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    background-color: #52381D;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 6px;
+    margin-top: 1.5em;
+    cursor: pointer;
+}
+
+.remove-dish-btn {
+  margin-bottom: 1em;
+}
