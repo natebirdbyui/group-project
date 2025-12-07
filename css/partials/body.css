@@ -109,6 +109,14 @@ body, html {
     gap: 2em;
 }
 
+/* Make menu text white inside slideshow */
+.menu-gallery-slideshow h3,
+.menu-gallery-slideshow a {
+    color: white;
+    text-decoration: none;
+}
+
+
 
 /*BBQ*/
 .gallery-bbq {
