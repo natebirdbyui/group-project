@@ -28,7 +28,7 @@ export function setupNav() {
     }
   });
 
-  // Optional: close menu on ESC key
+  //close menu on ESC key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       navMenu.classList.remove("active");
