@@ -70,8 +70,15 @@ export function addDish(dishesContainer, preselectId = null, guestsInput, grandT
   select.addEventListener("change", () => updateDishRow(row, guestsInput, grandTotalEl));
 
   row.querySelector(".remove-dish-btn").addEventListener("click", () => {
-    row.remove();
-    updateAllTotals(dishesContainer, guestsInput, grandTotalEl);
+    const allRows = dishesContainer.querySelectorAll(".dish-row");
+    if (allRows.length > 1) {
+      row.remove();
+      updateAllTotals(dishesContainer, guestsInput, grandTotalEl);
+    } else {
+      // Last row --> just clear selection instead of removing
+      select.value = "";
+      updateDishRow(row, guestsInput, grandTotalEl);
+    }
   });
 
   if (!preselectId) updateDishRow(row, guestsInput, grandTotalEl);
