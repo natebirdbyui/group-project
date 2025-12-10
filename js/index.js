@@ -1,6 +1,7 @@
 //This file will display menu items from slideshow.js and pull information from menu.json
 import { initSlideshows } from "./slideshow.js";
 import { setupNav } from "./navigation.js";
+import { saveHomepageDish } from "./local_storage.js";
 let menuData = [];
 
 // Load menu data from menu.json and populate slideshows
@@ -36,7 +37,11 @@ async function loadMenu() {
       </a>
     `;
 
-
+    // Save the dish selection when clicked
+      slide.querySelector("a").addEventListener("click", (e) => {
+        saveHomepageDish(item.id);
+      });
+      
       categories[item.category].appendChild(slide);
     });
 

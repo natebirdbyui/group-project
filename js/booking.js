@@ -43,22 +43,70 @@ async function initializeDishes(savedData) {
 }
 
 //Event Listeners
+//---Autosave features
+// Autosave on almost everything
+function setupAutosave() {
+
+  // Save any form field
+  bookingForm.addEventListener("input", () => {
+    saveFormData(bookingForm, dishesContainer);
+  });
+
+  bookingForm.addEventListener("change", () => {
+    saveFormData(bookingForm, dishesContainer);
+  });
+
+  // Save dish select
+  dishesContainer.addEventListener("change", e => {
+    if (e.target.matches(".menu-item-select")) {
+      updateDishRow(e.target.closest(".dish-row"), guestsInput, grandTotalEl);
+      saveFormData(bookingForm, dishesContainer);
+    }
+  });
+
+  // Save when rows are added / removed
+  //mutation observer to catch all changes in dishes container
+  const observer = new MutationObserver(() => {
+    saveFormData(bookingForm, dishesContainer);
+  });
+
+  observer.observe(dishesContainer, { childList: true, subtree: true });
+
+  // Save if user leaves page
+  window.addEventListener("beforeunload", () => {
+    saveFormData(bookingForm, dishesContainer);
+  });
+}
+
+//When a dish select changes
+dishesContainer.addEventListener("change", (e) => {
+  if (e.target.matches(".menu-item-select")) {
+    updateDishRow(e.target.closest(".dish-row"), guestsInput, grandTotalEl);
+    saveFormData(bookingForm, dishesContainer);
+  }
+});
+
+//more event listeners
 guestsInput.addEventListener("input", () => {
   updateAllTotals(dishesContainer, guestsInput, grandTotalEl);
   dishesContainer.querySelectorAll(".dish-row").forEach(row => updateDishRow(row, guestsInput, grandTotalEl));
   saveFormData(bookingForm, dishesContainer);
 });
 
-addDishButton.addEventListener("click", () => addDish(dishesContainer, null, guestsInput, grandTotalEl));
-
-restartButton.addEventListener("click", () => {
-  if (!window.confirm("Restart booking? All selections will be lost!")) return;
-
-  clearSavedData();
-  bookingForm.reset();
-  dishesContainer.querySelectorAll(".dish-row").forEach(row => row.remove());
-  grandTotalEl.textContent = "0.00";
+addDishButton.addEventListener("click", () => {
   addDish(dishesContainer, null, guestsInput, grandTotalEl);
+  saveFormData(bookingForm, dishesContainer);
+});
+
+//make sure to change window to modalElements
+restartButton.addEventListener("click", () => {
+  showModal(modalEls, "Restart booking? All selections will be lost!", () => {
+    clearSavedData();
+    bookingForm.reset();
+    dishesContainer.querySelectorAll(".dish-row").forEach(row => row.remove());
+    grandTotalEl.textContent = "0.00";
+    addDish(dishesContainer, null, guestsInput, grandTotalEl);
+  });
 });
 
 sessionSelect.addEventListener("change", () => {
@@ -72,6 +120,7 @@ sessionSelect.addEventListener("change", () => {
     guestsInput,
     (id) => addDish(dishesContainer, id, guestsInput, grandTotalEl)
   );
+  saveFormData(bookingForm, dishesContainer);
 });
 
 //phone input: allow only digits
@@ -80,9 +129,7 @@ const phoneInput = document.querySelector("#phone");
 phoneInput.addEventListener("input", () => {
   //Remove everything except digits
   let digits = phoneInput.value.replace(/\D/g, "").substring(0, 10);// Limit to 10 digits so no extra digits are entered
-
   let formatted = "";
-
   if (digits.length > 0) {
     formatted = "(" + digits.substring(0, 3);
   }
@@ -92,8 +139,8 @@ phoneInput.addEventListener("input", () => {
   if (digits.length >= 7) {
     formatted += "-" + digits.substring(6, 10);
   }
-
   phoneInput.value = formatted;
+  saveFormData(bookingForm, dishesContainer);
 });
 
 phoneInput.addEventListener("invalid", () => {
@@ -117,7 +164,9 @@ timeInput.addEventListener("blur", () => {
 
 //Initialization
 document.addEventListener("DOMContentLoaded", async () => {
+  setupAutosave();
   const savedData = restoreSavedData();
+
 
   //Load dishes etc.
   await initializeDishes(savedData);
@@ -125,12 +174,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   setMinTime(dateInput, timeInput);
 
   // Restore other form inputs
-  if (savedData) {
-    Object.keys(savedData).forEach(key => {
-      const input = bookingForm.querySelector(`[name="${key}"]`);
-      if (input) input.value = savedData[key];
-    });
-  }
+  if (savedData.formData) {
+  Object.keys(savedData.formData).forEach(name => {
+    const input = bookingForm.querySelector(`[name="${name}"]`);
+    if (input) input.value = savedData.formData[name];
+  });
+}
+
 
   // Apply service rules if needed
   if (service === "private" || service === "catering") {

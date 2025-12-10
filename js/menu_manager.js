@@ -8,11 +8,11 @@ export async function loadMenu(dishesContainer, savedData = {}, addDishCallback,
     const data = await response.json();
     menuData = data.menu;
 
-    // Restore saved dishes
-    if (savedData.dishes && savedData.dishes.length > 0) {
-      savedData.dishes.forEach(id => addDishCallback(id));
-    } else if (preselectedDish) {
+    // Preselected dish from homepage overrides saved data
+    if (preselectedDish) {
       addDishCallback(preselectedDish);
+    } else if (savedData.dishes && savedData.dishes.length > 0) {
+      savedData.dishes.forEach(id => addDishCallback(id));
     } else {
       addDishCallback(); // Always at least one row
     }
@@ -23,34 +23,37 @@ export async function loadMenu(dishesContainer, savedData = {}, addDishCallback,
 
 // Add a dish row
 export function addDish(dishesContainer, preselectId = null, guestsInput, grandTotalEl) {
-  if (!menuData.length) return;
+  if (!menuData.length || !dishesContainer) return;
 
   dishCount++;
   const row = document.createElement("div");
   row.classList.add("dish-row");
   row.dataset.row = dishCount;
 
+  const selectId = `dish-select-${dishCount}`; // Declare first
+
   row.innerHTML = `
-  <label for="${selectId}">Select a Dish:</label>
-  <select id="${selectId}" class="menu-item-select" required>
-    <option value="" disabled>Select a dish</option>
-  </select>
-  <button type="button" class="remove-dish-btn">Remove</button>
-  <div class="menu-details" style="display:none;">
-    <img class="menu-image" alt="Dish Image"/>
-    <h3 class="menu-name"></h3>
-    <p class="menu-description"></p>
-    <p><strong>Servings:</strong> <span class="menu-servings"></span></p>
-    <p><strong>Price per Serving:</strong> $<span class="menu-price"></span></p>
-    <p><strong>Trays Needed:</strong> <span class="menu-trays"></span></p>
-  </div>
-  <p><strong>Total:</strong> $<span class="estimated-total">0.00</span></p>
-`;
+    <label for="${selectId}">Select a Dish:</label>
+    <select id="${selectId}" class="menu-item-select" required>
+      <option value="" disabled selected>Select a dish</option>
+    </select>
+    <button type="button" class="remove-dish-btn">Remove</button>
+    <div class="menu-details" style="display:none;">
+      <img class="menu-image" alt="Dish Image"/>
+      <h3 class="menu-name"></h3>
+      <p class="menu-description"></p>
+      <p><strong>Servings:</strong> <span class="menu-servings"></span></p>
+      <p><strong>Price per Serving:</strong> $<span class="menu-price"></span></p>
+      <p><strong>Trays Needed:</strong> <span class="menu-trays"></span></p>
+    </div>
+    <p><strong>Total:</strong> $<span class="estimated-total">0.00</span></p>
+  `;
 
   dishesContainer.appendChild(row);
 
   const select = row.querySelector(".menu-item-select");
 
+  // Populate options
   menuData.forEach(item => {
     const option = document.createElement("option");
     option.value = item.id;
@@ -58,30 +61,28 @@ export function addDish(dishesContainer, preselectId = null, guestsInput, grandT
     select.appendChild(option);
   });
 
+  // Preselect if needed
   if (preselectId) {
-  // Wait until options are populated
-  setTimeout(() => {
     select.value = preselectId;
-    // Trigger change to update dish details
     select.dispatchEvent(new Event("change"));
-  }, 0);
-}
+  }
 
-
+  // Update row on selection
   select.addEventListener("change", () => updateDishRow(row, guestsInput, grandTotalEl));
 
+  // Remove button
   row.querySelector(".remove-dish-btn").addEventListener("click", () => {
     const allRows = dishesContainer.querySelectorAll(".dish-row");
     if (allRows.length > 1) {
       row.remove();
       updateAllTotals(dishesContainer, guestsInput, grandTotalEl);
     } else {
-      // Last row --> just clear selection instead of removing
       select.value = "";
       updateDishRow(row, guestsInput, grandTotalEl);
     }
   });
 
+  // Update totals initially
   if (!preselectId) updateDishRow(row, guestsInput, grandTotalEl);
 }
 
