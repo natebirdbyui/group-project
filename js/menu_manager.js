@@ -31,20 +31,21 @@ export function addDish(dishesContainer, preselectId = null, guestsInput, grandT
   row.dataset.row = dishCount;
 
   row.innerHTML = `
-    <select class="menu-item-select" required>
-      <option value="" disabled>Select a dish</option>
-    </select>
-    <button type="button" class="remove-dish-btn">Remove</button>
-    <div class="menu-details" style="display:none;">
-      <img class="menu-image" alt="Dish Image"/>
-      <h3 class="menu-name"></h3>
-      <p class="menu-description"></p>
-      <p><strong>Servings:</strong> <span class="menu-servings"></span></p>
-      <p><strong>Price per Serving:</strong> $<span class="menu-price"></span></p>
-      <p><strong>Trays Needed:</strong> <span class="menu-trays"></span></p>
-    </div>
-    <p><strong>Total:</strong> $<span class="estimated-total">0.00</span></p>
-  `;
+  <label for="${selectId}">Select a Dish:</label>
+  <select id="${selectId}" class="menu-item-select" required>
+    <option value="" disabled>Select a dish</option>
+  </select>
+  <button type="button" class="remove-dish-btn">Remove</button>
+  <div class="menu-details" style="display:none;">
+    <img class="menu-image" alt="Dish Image"/>
+    <h3 class="menu-name"></h3>
+    <p class="menu-description"></p>
+    <p><strong>Servings:</strong> <span class="menu-servings"></span></p>
+    <p><strong>Price per Serving:</strong> $<span class="menu-price"></span></p>
+    <p><strong>Trays Needed:</strong> <span class="menu-trays"></span></p>
+  </div>
+  <p><strong>Total:</strong> $<span class="estimated-total">0.00</span></p>
+`;
 
   dishesContainer.appendChild(row);
 
