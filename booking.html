@@ -11,6 +11,15 @@
     <script type="module" src="js/booking.js" defer></script>
 </head>
 <body>
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-message"></p>
+            <button id="modal-ok">OK</button>
+        </div>
+    </div>
     <header class="site-header">
         <!--photo is too large, please resize not sure what size you would like.
         I just shrunk it for now, so I could see the page-->
@@ -52,29 +61,29 @@
             <h2>Book Your Event</h2>
             <p>Ready to make your event unforgettable? Use the form below to book our catering services for your next gathering.</p>
             <form id="booking-form" action="#" method="post">
-                <label for="nameFirst">First Name:</label>
-                <input type="text" id="nameFirst" name="nameFirst" required>
+                <label for="nameFirst" class="required">First Name:</label>
+                <input type="text" id="nameFirst" name="nameFirst" required placeholder="Enter your first name">
 
-                <label for="nameLast">Last Name:</label>
-                <input type="text" id="nameLast" name="nameLast" required>
+                <label for="nameLast" class="required">Last Name:</label>
+                <input type="text" id="nameLast" name="nameLast" required placeholder="Enter your last name">
                 <br>
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email" class="required">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter a valid email address: name@example.com">
                 <br>
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
+                <label for="phone" class="required">Phone Number:</label><!-- This will have (xxx) xxx-xxxx format -->
+                <input type="tel" id="phone" name="phone" required pattern="^\(\d{3}\) \d{3}-\d{4}$" title="Enter a valid phone number-digits only." inputmode="numeric" placeholder="Enter a valid phone number.">
                 <br>
-                <label for="event-date">Event Date:</label>
+                <label for="event-date" class="required">Event Date:</label>
                 <input type="date" id="event-date" name="event-date" required>
                 <br>
-                <label for="event-time">Event Time:</label>
+                <label for="event-time" class="required">Event Time:</label>
                 <input type="time" id="event-time" name="event-time" required>
                 
-                <label for="guests">Number of Guests:</label>
-                <input type="number" id="guests" name="guests" required>
+                <label for="guests" class="required">Number of Guests:</label><!--Cannot have negative numbers or 0 for guests-->
+                <input type="number" id="guests" name="guests" required min="1" inputmode="numeric" placeholder="Enter number of guests">
                 <br>
 
-                <label for="typeSession">Type of Session:</label>
+                <label for="typeSession" class="required">Type of Session:</label>
                 <select id="typeSession" name="typeSession" required>
                     <option value="" disabled selected>Select an option</option>
                     <option value="catering">Catering</option>
@@ -108,15 +117,6 @@
                 
             </form>
         </section>  
-        <!-- Booking Modal -->
-        <div id="booking-modal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <span id="close-modal" class="close">&times;</span>
-                <h2 id="modal-title"></h2>
-                <p id="modal-message"></p>
-                <button id="modal-ok">OK</button>
-            </div>
-        </div>      
     </main>
     
     <footer>
