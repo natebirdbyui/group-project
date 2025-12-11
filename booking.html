@@ -61,28 +61,42 @@
             <h2>Book Your Event</h2>
             <p>Ready to make your event unforgettable? Use the form below to book our catering services for your next gathering.</p>
             <form id="booking-form" action="#" method="post">
+            <div class="form-row">
+                <div class="form-group">
                 <label for="nameFirst" class="required">First Name:</label>
                 <input type="text" id="nameFirst" name="nameFirst" required placeholder="Enter your first name">
-
+                </div>
+                <div class="form-group">
                 <label for="nameLast" class="required">Last Name:</label>
                 <input type="text" id="nameLast" name="nameLast" required placeholder="Enter your last name">
                 <br>
+                </div>
+            </div>
                 <label for="email" class="required">Email Address:</label>
                 <input type="email" id="email" name="email" required placeholder="Enter a valid email address: name@example.com">
                 <br>
                 <label for="phone" class="required">Phone Number:</label><!-- This will have (xxx) xxx-xxxx format -->
                 <input type="tel" id="phone" name="phone" required pattern="^\(\d{3}\) \d{3}-\d{4}$" title="Enter a valid phone number-digits only." inputmode="numeric" placeholder="Enter a valid phone number.">
                 <br>
+
+            <div class="form-row">
+                <div class="form-group">
                 <label for="event-date" class="required">Event Date:</label>
                 <input type="date" id="event-date" name="event-date" required>
                 <br>
+                </div>
+                <div class="form-group">
                 <label for="event-time" class="required">Event Time:</label>
                 <input type="time" id="event-time" name="event-time" required>
-                
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
                 <label for="guests" class="required">Number of Guests:</label><!--Cannot have negative numbers or 0 for guests-->
                 <input type="number" id="guests" name="guests" required min="1" inputmode="numeric" placeholder="Enter number of guests">
                 <br>
-
+                </div>
+                <div class="form-group">
                 <label for="typeSession" class="required">Type of Session:</label>
                 <select id="typeSession" name="typeSession" required>
                     <option value="" disabled selected>Select an option</option>
@@ -90,7 +104,9 @@
                     <option value="private">Private Dining</option>
                 </select>
                 <br>
-                <label>Select a Dish:</label>                
+                </div>
+            </div>
+                <!-- <label>Select a Dish:</label>                 -->
 
                 <!-- Display first dish photo/details -->
                 <div id="menu-details" class="menu-details" style="display:none;">

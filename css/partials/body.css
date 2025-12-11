@@ -116,8 +116,6 @@ body, html {
     text-decoration: none;
 }
 
-
-
 /*BBQ*/
 .gallery-bbq {
     text-align: center;
@@ -135,9 +133,6 @@ body, html {
     margin-top: 1em;
     font-size: 1.2 em;
 
-    /* text-decoration: none;
-    color: inherit;
-    color: white; */
 
 }
 
@@ -173,4 +168,5 @@ body, html {
     margin-top: 1em;
     font-size: 1.2 em;
 }
+
 

@@ -60,12 +60,50 @@ body, html {
 #booking-form {
   max-width: 600px; 
   margin: 0 auto;
-  padding: 2em; 
+  padding: 4em; 
+  padding-top: 2.5em;
   background-color: white; 
   border-radius: 8px; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
   text-align: left;
 }
+.form-row {
+  display: flex;
+  gap: 2.3em;
+  margin-top: 1em;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+  #booking-section h2 {
+    font-size: 1.8em;
+  }
+
+  #booking-section p {
+    font-size: 1em;
+  }
+    #booking-form label {
+    /* display: block; */
+    font-weight: bold;
+    margin-top: 1em;
+  }
+  .form-row .form-group input {
+    width: 100%;
+}
+  #booking-form input,
+  #booking-form select,
+  #booking-form textarea {
+    width: 100%;
+    padding: 0.75em;
+    margin-top: 0.3em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+  }
+  #booking-form button:hover {
+    background-color: #3d2a15;
+  }
 
 label.required::after {
     content: " *";
@@ -75,6 +113,7 @@ label.required::after {
 .nav-toggle {
     display: none; /* hide on desktop */
 }
+
 
 #add-dish-btn, #restart-booking-btn, #submit-btn, .remove-dish-btn {
     display: block;
